@@ -1,0 +1,54 @@
+{{!-- Creat a container to wrap everything inside --}}
+<div class="container">
+    {{!-- Header --}}
+
+    <h1 id="style1">Eat Da Burger</h1>
+    <h3 id="style3">I am a burger. Eat me now!</h3>
+
+    {{!-- Main Content --}}
+    <div class="row">
+        <div class="col-md-6">
+            {{!-- Burgers available to eat --}}
+
+            <h2 id="style2">Burgers available to eat:</h2>
+
+            <ul class="list">
+                {{#each burgers}} {{#unless devoured}}
+                <span><strong> {{this.id}}. {{this.burger_name}} </strong></span>
+                <button type="button" class="eatburger btn btn-warning" id="eatbutton" data-id="{{this.id}}"
+                    data-newDevoured="{{devour}}"><span class="fa fa-cutlery"></span></button>
+                <hr>
+                {{/unless}} {{/each}}
+            </ul>
+        </div>
+        <div class="col-md-6">
+            {{!-- Burgers that are devoured --}}
+            <h2 id="style2">Burgers that have been devoured:</h2>
+            <ul class="list">
+                {{#each burgers}}
+                {{#if devoured}}
+                <span><strong> {{this.id}}. {{this.burger_name}} </strong></span>
+                <button type="button" class="trashburger btn btn-danger" id="trashbutton" data-id="{{this.id}}"
+                    data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
+                <hr>
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+
+
+    </div>
+    {{!-- Make/add new burger --}}
+    <h2 id="style2">Make a new burger:</h2>
+
+    <!-- Button for adding a burger -->
+    <form class="create-update-form">
+        <div class="form-group">
+            <label for="newburger" class="new">Burger Name:</label>
+            <input type="text" id="newburger" name="burger_name">
+        </div>
+        <button class="btn btn-primary" type="submit">Make me!</button>
+    </form>
+
+
+</div> <!-- End of container -->
